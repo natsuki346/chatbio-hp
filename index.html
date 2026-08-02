@@ -148,6 +148,29 @@ svg,video{display:block;max-width:100%;}
 }
 @keyframes halo{0%,56%{opacity:0;}64%{opacity:.16;}88%,100%{opacity:0;}}
 
+/* ── responsive stage ───────────────────────── */
+.stage-sp{display:none;}
+.sp-wq{font-family:var(--display);font-weight:700;font-size:20px;fill:var(--ink);text-anchor:middle;}
+.sp-ct{font-size:13px;fill:var(--gold-deep);}
+.sp-strike1,.sp-strike2{stroke:var(--gold-deep);stroke-width:2.2;stroke-linecap:round;
+  transform-box:fill-box;transform-origin:left center;opacity:0;
+  animation:strike 21s cubic-bezier(.4,0,.2,1) infinite;animation-delay:var(--d);}
+@media (max-width:680px){
+  .stage-pc{display:none;}
+  .stage-sp{display:block;}
+  .stage{margin-top:32px;}
+  .hero{padding:44px 0 20px;}
+  .hero h1{font-size:clamp(1.5rem,6.5vw,2rem);}
+  .hero__concept{font-size:clamp(.9rem,4vw,1.1rem);}
+  .hero__lead{font-size:14px;}
+  .signup{gap:8px;}
+  .signup__in{font-size:14px;padding:14px 16px;}
+  .cta{padding:72px 0 80px;}
+}
+@media (max-width:400px){
+  :root{--pad:16px;}
+  .hero h1{font-size:clamp(1.3rem,7vw,1.7rem);}
+}
 /* concept subline & signup form ------------------------------ */
 .hero__concept{
   font-family:var(--display);font-weight:500;
@@ -310,7 +333,8 @@ svg,video{display:block;max-width:100%;}
   .qf{opacity:0;}
   .slot,.slot__a,.b2,.b3{opacity:1;}
   .turn{opacity:0;}
-  .turn:first-of-type,.turn:first-of-type .rep,.turn:first-of-type .ql{opacity:1;}
+  .turn:first-of-type{opacity:1;}
+  .turn:first-of-type .rep,.turn:first-of-type .ql{opacity:1;}
   .mk-bulb,.halo,.strike{opacity:0;}
   .fog{opacity:1;}
 }
@@ -355,7 +379,7 @@ svg,video{display:block;max-width:100%;}
   </div>
 
   <div class="wrap stage">
-    <svg viewBox="0 0 760 390" role="img" aria-label="左に浮かぶ悩みの？に対して、右側に経験者の声が次々と浮かび上がり、最後に？が電球とともに！へ変わるアニメーション">
+    <svg class="stage-pc" viewBox="0 0 760 390" role="img" aria-label="左に浮かぶ悩みの？に対して、右側に経験者の声が次々と浮かび上がり、最後に？が電球とともに！へ変わるアニメーション">
       <g class="turn" style="--d:0s">
         <g class="ql">
           <path class="thr" d="M290 214 C316 214 310 86 330 86"/>
@@ -504,6 +528,167 @@ svg,video{display:block;max-width:100%;}
           </g>
           <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,278)"/>
           <text class="ct" x="416" y="283">考える時間に、上限をつけて動いた</text>
+        </g>
+      </g>
+    </svg>
+    <svg class="stage-sp" viewBox="0 0 400 560" role="img" aria-label="上に？と悩みが浮かび、下に経験者の声が返ってきて！になるアニメーション">
+      <g class="turn" style="--d:0s">
+        <g class="ql">
+          <path class="thr" d="M200 198 C200 224 200 244 200 248"/>
+          <path class="thr" d="M200 198 C200 224 200 336 200 340"/>
+          <path class="thr" d="M200 198 C200 224 200 428 200 432"/>
+        </g>
+        <g class="mind">
+          <circle class="halo" cx="200" cy="72" r="58"/>
+          <text class="mk-q" x="200" y="100">？</text>
+          <g class="mk-bulb">
+            <text class="mk-b" x="200" y="100">！</text>
+          </g>
+        </g>
+        <g class="fog">
+          <ellipse class="mist" cx="148" cy="158" rx="66" ry="30"/>
+          <ellipse class="mist" cx="256" cy="152" rx="58" ry="26"/>
+          <ellipse class="mist" cx="200" cy="178" rx="74" ry="26"/>
+        </g>
+        <text class="wq sp-wq" x="200" y="148">大学時代って、</text>
+        <text class="wq sp-wq" x="200" y="178">何して過ごせばいいのかな</text>
+        <line class="strike sp-strike1" x1="100" y1="142" x2="300" y2="142"/>
+        <line class="strike sp-strike2" x1="80" y1="172" x2="320" y2="172"/>
+        <g class="rep" style="--rd:1.0s">
+          <rect class="rep-bg" x="24" y="248" width="352" height="72" rx="18"/>
+          <g transform="translate(58,284)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 C8 -11 -8 -11 -13 -4 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,284)"/>
+          <text class="ct sp-ct" x="100" y="279">1個だけ、本気でやり切る</text>
+          <text class="ct sp-ct" x="100" y="299">ものを決めた</text>
+        </g>
+        <g class="rep" style="--rd:1.55s">
+          <rect class="rep-bg" x="24" y="340" width="352" height="72" rx="18"/>
+          <g transform="translate(58,376)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 L15 13 L9 13 C10 3 8 -6 0 -9 C-8 -6 -10 3 -9 13 L-15 13 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,376)"/>
+          <text class="ct sp-ct" x="100" y="371">正解を探すのをやめて、量</text>
+          <text class="ct sp-ct" x="100" y="391">を先に積んだ</text>
+        </g>
+        <g class="rep" style="--rd:2.1s">
+          <rect class="rep-bg" x="24" y="432" width="352" height="72" rx="18"/>
+          <g transform="translate(58,468)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 Z"/><path class="av-h" d="M0 -4 L21 -7 A3 3 0 0 0 20 -12 L0 -9 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,468)"/>
+          <text class="ct sp-ct" x="100" y="463">やらないことを先に3つ決</text>
+          <text class="ct sp-ct" x="100" y="483">めておいた</text>
+        </g>
+      </g>
+      <g class="turn" style="--d:7s">
+        <g class="ql">
+          <path class="thr" d="M200 198 C200 224 200 244 200 248"/>
+          <path class="thr" d="M200 198 C200 224 200 336 200 340"/>
+          <path class="thr" d="M200 198 C200 224 200 428 200 432"/>
+        </g>
+        <g class="mind">
+          <circle class="halo" cx="200" cy="72" r="58"/>
+          <text class="mk-q" x="200" y="100">？</text>
+          <g class="mk-bulb">
+            <text class="mk-b" x="200" y="100">！</text>
+          </g>
+        </g>
+        <g class="fog">
+          <ellipse class="mist" cx="148" cy="158" rx="66" ry="30"/>
+          <ellipse class="mist" cx="256" cy="152" rx="58" ry="26"/>
+          <ellipse class="mist" cx="200" cy="178" rx="74" ry="26"/>
+        </g>
+        <text class="wq sp-wq" x="200" y="148">面接って、どうすれば</text>
+        <text class="wq sp-wq" x="200" y="178">うまくいくんだろう</text>
+        <line class="strike sp-strike1" x1="100" y1="142" x2="300" y2="142"/>
+        <line class="strike sp-strike2" x1="80" y1="172" x2="320" y2="172"/>
+        <g class="rep" style="--rd:1.0s">
+          <rect class="rep-bg" x="24" y="248" width="352" height="72" rx="18"/>
+          <g transform="translate(58,284)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 C8 -11 -8 -11 -13 -4 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,284)"/>
+          <text class="ct sp-ct" x="100" y="279">準備より先に、場数を10</text>
+          <text class="ct sp-ct" x="100" y="299">回踏んだ</text>
+        </g>
+        <g class="rep" style="--rd:1.55s">
+          <rect class="rep-bg" x="24" y="340" width="352" height="72" rx="18"/>
+          <g transform="translate(58,376)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 L15 13 L9 13 C10 3 8 -6 0 -9 C-8 -6 -10 3 -9 13 L-15 13 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,376)"/>
+          <text class="ct sp-ct" x="100" y="371">話す内容より、話す順番を</text>
+          <text class="ct sp-ct" x="100" y="391">組み直した</text>
+        </g>
+        <g class="rep" style="--rd:2.1s">
+          <rect class="rep-bg" x="24" y="432" width="352" height="72" rx="18"/>
+          <g transform="translate(58,468)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 Z"/><path class="av-h" d="M0 -4 L21 -7 A3 3 0 0 0 20 -12 L0 -9 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,468)"/>
+          <text class="ct sp-ct" x="100" y="463">聞かれたい話を、自分から</text>
+          <text class="ct sp-ct" x="100" y="483">差し出した</text>
+        </g>
+      </g>
+      <g class="turn" style="--d:14s">
+        <g class="ql">
+          <path class="thr" d="M200 198 C200 224 200 244 200 248"/>
+          <path class="thr" d="M200 198 C200 224 200 336 200 340"/>
+          <path class="thr" d="M200 198 C200 224 200 428 200 432"/>
+        </g>
+        <g class="mind">
+          <circle class="halo" cx="200" cy="72" r="58"/>
+          <text class="mk-q" x="200" y="100">？</text>
+          <g class="mk-bulb">
+            <text class="mk-b" x="200" y="100">！</text>
+          </g>
+        </g>
+        <g class="fog">
+          <ellipse class="mist" cx="148" cy="158" rx="66" ry="30"/>
+          <ellipse class="mist" cx="256" cy="152" rx="58" ry="26"/>
+          <ellipse class="mist" cx="200" cy="178" rx="74" ry="26"/>
+        </g>
+        <text class="wq sp-wq" x="200" y="148">最初の一歩を踏み出す</text>
+        <text class="wq sp-wq" x="200" y="178">コツって、何かないかな</text>
+        <line class="strike sp-strike1" x1="100" y1="142" x2="300" y2="142"/>
+        <line class="strike sp-strike2" x1="80" y1="172" x2="320" y2="172"/>
+        <g class="rep" style="--rd:1.0s">
+          <rect class="rep-bg" x="24" y="248" width="352" height="72" rx="18"/>
+          <g transform="translate(58,284)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 C8 -11 -8 -11 -13 -4 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,284)"/>
+          <text class="ct sp-ct" x="100" y="279">期限を切って、先に人へ宣</text>
+          <text class="ct sp-ct" x="100" y="299">言した</text>
+        </g>
+        <g class="rep" style="--rd:1.55s">
+          <rect class="rep-bg" x="24" y="340" width="352" height="72" rx="18"/>
+          <g transform="translate(58,376)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 L15 13 L9 13 C10 3 8 -6 0 -9 C-8 -6 -10 3 -9 13 L-15 13 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,376)"/>
+          <text class="ct sp-ct" x="100" y="371">一番小さく壊せる形まで削</text>
+          <text class="ct sp-ct" x="100" y="391">ってみた</text>
+        </g>
+        <g class="rep" style="--rd:2.1s">
+          <rect class="rep-bg" x="24" y="432" width="352" height="72" rx="18"/>
+          <g transform="translate(58,468)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 Z"/><path class="av-h" d="M0 -4 L21 -7 A3 3 0 0 0 20 -12 L0 -9 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(82,468)"/>
+          <text class="ct sp-ct" x="100" y="463">考える時間に、上限をつけ</text>
+          <text class="ct sp-ct" x="100" y="483">て動いた</text>
         </g>
       </g>
     </svg>
