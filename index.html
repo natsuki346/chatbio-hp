@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chat Bio — あなたの悩みを乗り越えたTipsが、ここにある。</title>
+<title>Chat Bio — あなたの悩みに、解決した経験者の声が返ってくる。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
@@ -63,6 +63,10 @@ svg,video{display:block;max-width:100%;}
    HERO
    ============================================================ */
 .hero{padding:84px 0 40px;}
+.hero__kicker{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--gold-deep);
+  margin:0 0 18px;text-transform:uppercase;
+}
 .hero h1{
   font-family:var(--display);font-weight:700;
   font-size:clamp(1.9rem,5.2vw,3.25rem);line-height:1.55;margin:0 0 24px;
@@ -73,65 +77,93 @@ svg,video{display:block;max-width:100%;}
 .stage{margin-top:48px;}
 .stage svg{width:100%;height:auto;}
 
-/* 人物パーツ */
-.p-body{fill:var(--ink);}
-.p-face{fill:#fff;stroke:var(--ink);stroke-width:1.7;}
-.p-hair{fill:var(--ink);}
-.p-glass{fill:none;stroke:var(--ink);stroke-width:1.4;}
-.person{transform-box:fill-box;transform-origin:center bottom;animation:pulse 9s ease-in-out infinite;}
+/* insight flow animation ------------------------------------ */
+.ct{font-family:var(--body);font-size:14.5px;fill:var(--gold-deep);}
+.wq{font-family:var(--display);font-weight:700;font-size:19px;fill:var(--ink);text-anchor:middle;letter-spacing:.01em;}
+.rep-bg{fill:var(--gold-soft);stroke:var(--gold);stroke-width:1.3;}
+.av{fill:#fff;stroke:var(--ink);stroke-width:1.5;}
+.av-h{fill:var(--ink);}
+.blt{fill:var(--gold);}
+.thr{fill:none;stroke:var(--gold);stroke-width:1.1;stroke-dasharray:2 9;opacity:.45;animation:flow 2.4s linear infinite;}
+.halo{fill:var(--gold);opacity:0;animation:halo 7s ease-out infinite;animation-delay:var(--d);}
+.mk-q{font-family:var(--display);font-size:60px;font-weight:700;fill:var(--ink);text-anchor:middle;
+  animation:mq 7s ease-in-out infinite;animation-delay:var(--d);}
+.mk-b{font-family:var(--display);font-size:60px;font-weight:700;fill:var(--gold);text-anchor:middle;}
+.mk-bulb{transform-box:fill-box;transform-origin:center;opacity:0;
+  animation:mb 7s cubic-bezier(.3,1.6,.5,1) infinite;animation-delay:var(--d);}
 
-/* ヘッダーアニメーション */
-.thread{stroke:var(--gold);stroke-width:1.1;stroke-dasharray:2 9;opacity:.45;animation:flow 2.4s linear infinite;}
-.tip{transform-box:fill-box;transform-origin:center;opacity:0;animation:travel 9s cubic-bezier(.55,0,.35,1) infinite;}
-.tip rect{fill:var(--gold-soft);stroke:var(--gold);stroke-width:1.3;}
-.tip line{stroke:var(--gold-deep);stroke-width:1.6;stroke-linecap:round;}
-.glow{fill:var(--gold);opacity:0;animation:glow 9s ease-out infinite;}
-.ws{fill:#fff;stroke:var(--ink);stroke-width:1.7;animation:flash 9s ease-out infinite;}
-.ws-chrome{fill:var(--line);}
-.mark-q{font-family:var(--display);font-size:58px;font-weight:700;fill:var(--ink);text-anchor:middle;animation:qOut 9s ease-in-out infinite;}
-.mark-b{font-family:var(--display);font-size:58px;font-weight:700;fill:var(--gold);text-anchor:middle;transform-box:fill-box;transform-origin:center;opacity:0;animation:bIn 9s cubic-bezier(.3,1.6,.5,1) infinite;}
-.entry{fill:var(--gold);transform-box:fill-box;transform-origin:center;opacity:0;animation:entry 9s ease-out infinite;}
-.bolts{transform-box:fill-box;transform-origin:center;opacity:0;animation:burst 9s cubic-bezier(.2,.9,.3,1) infinite;}
-.bolts path{fill:var(--gold);}
-.arc{fill:none;stroke:var(--gold);stroke-width:2.2;transform-box:fill-box;transform-origin:center;opacity:0;animation:ring 9s cubic-bezier(.2,.9,.3,1) infinite;}
+.turn{opacity:0;animation:turn 21s linear infinite;animation-delay:var(--d);}
+.wq{animation:wq 21s ease-out infinite;animation-delay:var(--d);}
+.rep{opacity:0;transform-box:fill-box;transform-origin:left center;
+  animation:rep 21s cubic-bezier(.25,1.3,.4,1) infinite;
+  animation-delay:calc(var(--d) + var(--rd));}
+.ql{opacity:0;animation:ql 21s ease-out infinite;animation-delay:var(--d);}
+
+.mist{fill:var(--mist);}
+.fog{animation:fog 21s ease-out infinite;animation-delay:var(--d);opacity:0;}
+.mist:nth-of-type(1){animation:drift 5s ease-in-out infinite;}
+.mist:nth-of-type(2){animation:drift 6.2s ease-in-out infinite -1.5s;}
+.mist:nth-of-type(3){animation:drift 5.6s ease-in-out infinite -3s;}
+.strike{stroke:var(--gold-deep);stroke-width:2.2;stroke-linecap:round;
+  transform-box:fill-box;transform-origin:left center;opacity:0;
+  animation:strike 21s cubic-bezier(.4,0,.2,1) infinite;animation-delay:var(--d);}
+
+@keyframes drift{0%,100%{transform:translateY(-3px);}50%{transform:translateY(4px);}}
+@keyframes fog{
+  0%{opacity:0;}
+  3%{opacity:1;}
+  17%{opacity:1;}
+  24%{opacity:0;transform:translateY(12px);}
+  100%{opacity:0;transform:translateY(12px);}
+}
+@keyframes strike{
+  0%,16%{opacity:0;transform:scaleX(0);}
+  17%{opacity:1;transform:scaleX(0);}
+  21%{opacity:1;transform:scaleX(1);}
+  23%{opacity:1;transform:scaleX(1);}
+  26%,100%{opacity:0;transform:scaleX(1);}
+}
 
 @keyframes flow{to{stroke-dashoffset:-44;}}
-@keyframes pulse{
-  0%,3%{transform:translateY(0) scale(1);}
-  6%{transform:translateY(-3px) scale(1.04);}
-  15%,100%{transform:translateY(0) scale(1);}
+@keyframes turn{0%{opacity:0;}1%,31%{opacity:1;}33%,100%{opacity:0;}}
+@keyframes ql{0%{opacity:0;}4%,29%{opacity:1;}32%,100%{opacity:0;}}
+@keyframes wq{
+  0%{opacity:0;transform:translateY(6px);}
+  2%{opacity:1;transform:translateY(0);}
+  23%{opacity:1;transform:translateY(0);}
+  26%,100%{opacity:0;transform:translateY(-6px);}
 }
-@keyframes travel{
-  0%{opacity:0;transform:translate(0,0) scale(.3);}
-  5%{opacity:1;transform:translate(0,0) scale(1);}
-  28%{opacity:1;transform:translate(calc(var(--dx) * .88),calc(var(--dy) * .88)) scale(1);}
-  37%,100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.1);}
+@keyframes rep{
+  0%{opacity:0;transform:translateX(-14px) scale(.94);}
+  2.5%{opacity:1;transform:translateX(0) scale(1);}
+  26%{opacity:1;transform:translateX(0) scale(1);}
+  28%,100%{opacity:0;transform:translateX(0) scale(1);}
 }
-@keyframes entry{
-  0%,36%{opacity:0;transform:scale(0);}
-  41%{opacity:1;transform:scale(1.45);}
-  46%,80%{opacity:1;transform:scale(1);}
-  86%,100%{opacity:0;transform:scale(1);}
+@keyframes mq{0%,52%{opacity:1;}60%,94%{opacity:0;}99%,100%{opacity:1;}}
+@keyframes mb{
+  0%,56%{opacity:0;transform:scale(.35);}
+  64%{opacity:1;transform:scale(1.1);}
+  70%,92%{opacity:1;transform:scale(1);}
+  97%,100%{opacity:0;transform:scale(1);}
 }
-@keyframes qOut{0%,50%{opacity:1;}54%,84%{opacity:0;}90%,100%{opacity:1;}}
-@keyframes bIn{
-  0%,53%{opacity:0;transform:scale(.2);}
-  60%{opacity:1;transform:scale(1.12);}
-  66%,80%{opacity:1;transform:scale(1);}
-  85%,100%{opacity:0;transform:scale(1);}
+@keyframes halo{0%,56%{opacity:0;}64%{opacity:.16;}88%,100%{opacity:0;}}
+
+/* concept subline & signup form ------------------------------ */
+.hero__concept{
+  font-family:var(--display);font-weight:500;
+  font-size:clamp(1rem,2.2vw,1.22rem);line-height:1.8;
+  color:var(--ink-60);margin:0 0 22px;
 }
-@keyframes burst{
-  0%,53%{opacity:0;transform:scale(.3);}
-  57%{opacity:1;transform:scale(.85);}
-  68%,100%{opacity:0;transform:scale(1.4);}
+.signup{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 auto;max-width:480px;}
+.signup__in{
+  flex:1 1 240px;min-width:0;
+  font-family:var(--body);font-size:15px;color:var(--ink);
+  padding:16px 20px;border:1.5px solid var(--line);border-radius:999px;
+  background:#fff;transition:border-color .18s ease;
 }
-@keyframes ring{
-  0%,53%{opacity:0;transform:scale(.4);}
-  57%{opacity:.9;transform:scale(.8);}
-  71%,100%{opacity:0;transform:scale(1.55);}
-}
-@keyframes glow{0%,52%{opacity:0;}58%{opacity:.18;}75%,100%{opacity:0;}}
-@keyframes flash{0%,52%{stroke:var(--ink);}57%{stroke:var(--gold);}73%,100%{stroke:var(--ink);}}
+.signup__in::placeholder{color:var(--ink-30);}
+.signup__in:focus{outline:none;border-color:var(--gold);}
+.signup .btn{flex:0 0 auto;border:1.5px solid var(--ink);cursor:pointer;}
 
 /* ============================================================
    体験
@@ -275,8 +307,12 @@ svg,video{display:block;max-width:100%;}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition:none !important;}
-  .tip,.qf{opacity:0;}
-  .entry,.slot,.slot__a,.b2,.b3{opacity:1;}
+  .qf{opacity:0;}
+  .slot,.slot__a,.b2,.b3{opacity:1;}
+  .turn{opacity:0;}
+  .turn:first-of-type,.turn:first-of-type .rep,.turn:first-of-type .ql{opacity:1;}
+  .mk-bulb,.halo,.strike{opacity:0;}
+  .fog{opacity:1;}
 }
 </style>
 </head>
@@ -291,10 +327,11 @@ svg,video{display:block;max-width:100%;}
 
 <main id="top">
 
-<!-- ================= 1. コンセプト ================= -->
+<!-- ================= 1. コンセプト（WHAT起点） ================= -->
 <section class="hero">
   <div class="wrap">
-    <h1>あなたの悩みを乗り越えた<br><em>Tips<svg class="bulb" viewBox="0 0 26 26" aria-hidden="true">
+    <p class="hero__kicker">AIチャット × 実体験ボット</p>
+    <h1>あなたの悩みに、<br><em>解決した経験者の声<svg class="bulb" viewBox="0 0 26 26" aria-hidden="true">
       <g fill="none" stroke="#F2A900" stroke-width="1.6" stroke-linecap="round">
         <line x1="13" y1="0.9" x2="13" y2="2.7"/>
         <line x1="3.4" y1="10.6" x2="1.6" y2="10.6"/>
@@ -305,132 +342,169 @@ svg,video{display:block;max-width:100%;}
       <path fill="#F2A900" d="M13 4.2C9.2 4.2 6.2 7.1 6.2 10.6c0 2.2 1.2 3.6 2.3 4.8.6.7.9 1.2 1 1.9h7c.1-.7.4-1.2 1-1.9 1.1-1.2 2.3-2.6 2.3-4.8 0-3.5-3-6.4-6.8-6.4z"/>
       <rect x="9.4" y="18.6" width="7.2" height="2" rx="1" fill="#101012"/>
       <rect x="10.6" y="21.6" width="4.8" height="2" rx="1" fill="#101012"/>
-    </svg></em>が、ここにある。</h1>
+    </svg></em>が返ってくる。</h1>
+    <p class="hero__concept">あなたの悩みを乗り越えたTipsが、ここにある。</p>
     <p class="hero__lead">
       「こんなこと考えてるの、自分だけかな」<br>
-      その瞬間に開いて、同じ道を通った人の経験を引く。正解ではなく、視点とTipsが返ってきます。
+      その瞬間に開き、同じ道を通った経験者の視点とTipsにアクセスしよう。
     </p>
-    <a class="btn" href="#waitlist">ウェイティングリストに登録</a>
+    <form class="signup" action="#" method="post" novalidate>
+      <input class="signup__in" type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス">
+      <button class="btn" type="submit">ウェイティングリストに登録</button>
+    </form>
   </div>
 
   <div class="wrap stage">
-    <svg viewBox="0 0 800 460" role="img" aria-label="6人の経験者からTipsが集まり、ひとつのワークスペースに吸い込まれて、ひらめきに変わるアニメーション">
-
-      <!-- 電気の通り道 -->
-      <g>
-        <line class="thread" x1="152" y1="148" x2="400" y2="220"/>
-        <line class="thread" x1="400" y1="74"  x2="400" y2="220"/>
-        <line class="thread" x1="648" y1="148" x2="400" y2="220"/>
-        <line class="thread" x1="648" y1="298" x2="400" y2="220"/>
-        <line class="thread" x1="400" y1="370" x2="400" y2="220"/>
-        <line class="thread" x1="152" y1="298" x2="400" y2="220"/>
+    <svg viewBox="0 0 760 390" role="img" aria-label="左に浮かぶ悩みの？に対して、右側に経験者の声が次々と浮かび上がり、最後に？が電球とともに！へ変わるアニメーション">
+      <g class="turn" style="--d:0s">
+        <g class="ql">
+          <path class="thr" d="M290 214 C316 214 310 86 330 86"/>
+          <path class="thr" d="M290 214 C316 214 310 182 330 182"/>
+          <path class="thr" d="M290 214 C316 214 310 278 330 278"/>
+        </g>
+        <g class="mind">
+          <circle class="halo" cx="176" cy="104" r="62"/>
+          <text class="mk-q" x="176" y="128">？</text>
+          <g class="mk-bulb">
+            <text class="mk-b" x="176" y="128">！</text>
+          </g>
+        </g>
+        <g class="fog">
+          <ellipse class="mist" cx="124" cy="192" rx="66" ry="34"/>
+          <ellipse class="mist" cx="232" cy="198" rx="58" ry="30"/>
+          <ellipse class="mist" cx="176" cy="230" rx="78" ry="30"/>
+        </g>
+        <text class="wq" x="176" y="196">大学時代って、</text>
+        <text class="wq" x="176" y="228">何して過ごせばいいのかな</text>
+        <line class="strike" x1="102" y1="190" x2="250" y2="190"/>
+        <line class="strike" x2="298" y1="222" x1="54" y2="222"/>
+        <g class="rep" style="--rd:0.9s">
+          <rect class="rep-bg" x="330" y="52" width="390" height="68" rx="18"/>
+          <g transform="translate(370,86)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 C8 -11 -8 -11 -13 -4 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,86)"/>
+          <text class="ct" x="416" y="91">1個だけ、本気でやり切るものを決めた</text>
+        </g>
+        <g class="rep" style="--rd:1.4500000000000002s">
+          <rect class="rep-bg" x="330" y="148" width="390" height="68" rx="18"/>
+          <g transform="translate(370,182)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 L15 13 L9 13 C10 3 8 -6 0 -9 C-8 -6 -10 3 -9 13 L-15 13 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,182)"/>
+          <text class="ct" x="416" y="187">正解を探すのをやめて、量を先に積んだ</text>
+        </g>
+        <g class="rep" style="--rd:2.0s">
+          <rect class="rep-bg" x="330" y="244" width="390" height="68" rx="18"/>
+          <g transform="translate(370,278)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 Z"/><path class="av-h" d="M0 -4 L21 -7 A3 3 0 0 0 20 -12 L0 -9 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,278)"/>
+          <text class="ct" x="416" y="283">やらないことを先に3つ決めておいた</text>
+        </g>
       </g>
-
-      <!-- 6人（別人として描き分け） -->
-      <g transform="translate(152,132)"><g class="person" style="animation-delay:0s">
-        <rect class="p-body" x="-5" y="6" width="10" height="18"/>
-        <path class="p-body" d="M-28 48 C-28 30 -10 22 0 22 C10 22 28 30 28 48 Z"/>
-        <circle class="p-face" cx="0" cy="0" r="15"/>
-        <path class="p-hair" d="M-15.5 -2 A15.5 15.5 0 0 1 15.5 -2 C10 -10 -10 -10 -15.5 -2 Z"/>
-        <g class="p-glass"><circle cx="-6.5" cy="2" r="5"/><circle cx="6.5" cy="2" r="5"/><line x1="-1.5" y1="2" x2="1.5" y2="2"/></g>
-      </g></g>
-
-      <g transform="translate(400,58)"><g class="person" style="animation-delay:.9s">
-        <rect class="p-body" x="-5" y="6" width="10" height="18"/>
-        <path class="p-body" d="M-28 48 C-28 30 -10 22 0 22 C10 22 28 30 28 48 Z"/>
-        <circle class="p-face" cx="0" cy="0" r="15"/>
-        <path class="p-hair" d="M-15.5 -2 A15.5 15.5 0 0 1 15.5 -2 L18 24 L11 24 C13 10 11 0 7 -4 C2 -8 -2 -8 -7 -4 C-11 0 -13 10 -11 24 L-18 24 Z"/>
-      </g></g>
-
-      <g transform="translate(648,132)"><g class="person" style="animation-delay:.3s">
-        <rect class="p-body" x="-5" y="6" width="10" height="18"/>
-        <path class="p-body" d="M-28 48 C-28 30 -10 22 0 22 C10 22 28 30 28 48 Z"/>
-        <circle class="p-hair" cx="0" cy="-19" r="7.5"/>
-        <circle class="p-face" cx="0" cy="0" r="15"/>
-        <path class="p-hair" d="M-15.5 -2 A15.5 15.5 0 0 1 15.5 -2 C10 -10 -10 -10 -15.5 -2 Z"/>
-      </g></g>
-
-      <g transform="translate(648,282)"><g class="person" style="animation-delay:1.2s">
-        <rect class="p-body" x="-5" y="6" width="10" height="18"/>
-        <path class="p-body" d="M-28 48 C-28 30 -10 22 0 22 C10 22 28 30 28 48 Z"/>
-        <circle class="p-face" cx="0" cy="0" r="15"/>
-        <path class="p-hair" d="M-15.5 -3 A15.5 15.5 0 0 1 15.5 -3 Z"/>
-        <path class="p-hair" d="M0 -3 L24 -6 A3.5 3.5 0 0 0 23 -12 L0 -9 Z"/>
-      </g></g>
-
-      <g transform="translate(400,354)"><g class="person" style="animation-delay:.6s">
-        <rect class="p-body" x="-5" y="6" width="10" height="18"/>
-        <path class="p-body" d="M-28 48 C-28 30 -10 22 0 22 C10 22 28 30 28 48 Z"/>
-        <circle class="p-face" cx="0" cy="0" r="15"/>
-        <path class="p-hair" d="M-16 -1 A16 16 0 0 1 16 -1 L16.5 12 C16.5 4 12 -3 0 -3 C-12 -3 -16.5 4 -16.5 12 Z"/>
-      </g></g>
-
-      <g transform="translate(152,282)"><g class="person" style="animation-delay:1.5s">
-        <rect class="p-body" x="-5" y="6" width="10" height="18"/>
-        <path class="p-body" d="M-28 48 C-28 30 -10 22 0 22 C10 22 28 30 28 48 Z"/>
-        <circle class="p-face" cx="0" cy="0" r="15"/>
-        <path class="p-hair" d="M-15.5 -2 A15.5 15.5 0 0 1 15.5 -2 C10 -10 -10 -10 -15.5 -2 Z"/>
-        <circle class="p-hair" cx="-9" cy="-11" r="5"/><circle class="p-hair" cx="0" cy="-15" r="5.5"/><circle class="p-hair" cx="9" cy="-11" r="5"/>
-        <path class="p-hair" d="M-6 9 C-3 13 3 13 6 9 C4 15 -4 15 -6 9 Z"/>
-      </g></g>
-
-      <!-- ひらめきの光 -->
-      <circle class="glow" cx="400" cy="220" r="140"/>
-
-      <!-- ワークスペース -->
-      <rect class="ws" x="284" y="144" width="232" height="152" rx="18"/>
-      <circle class="ws-chrome" cx="303" cy="164" r="3"/>
-      <circle class="ws-chrome" cx="315" cy="164" r="3"/>
-      <circle class="ws-chrome" cx="327" cy="164" r="3"/>
-      <text class="mark-q" x="400" y="250">？</text>
-      <text class="mark-b" x="400" y="250">！</text>
-
-      <g>
-        <circle class="entry" cx="355" cy="274" r="4" style="animation-delay:0s"/>
-        <circle class="entry" cx="373" cy="274" r="4" style="animation-delay:.3s"/>
-        <circle class="entry" cx="391" cy="274" r="4" style="animation-delay:.6s"/>
-        <circle class="entry" cx="409" cy="274" r="4" style="animation-delay:.9s"/>
-        <circle class="entry" cx="427" cy="274" r="4" style="animation-delay:1.2s"/>
-        <circle class="entry" cx="445" cy="274" r="4" style="animation-delay:1.5s"/>
+      <g class="turn" style="--d:7s">
+        <g class="ql">
+          <path class="thr" d="M290 214 C316 214 310 86 330 86"/>
+          <path class="thr" d="M290 214 C316 214 310 182 330 182"/>
+          <path class="thr" d="M290 214 C316 214 310 278 330 278"/>
+        </g>
+        <g class="mind">
+          <circle class="halo" cx="176" cy="104" r="62"/>
+          <text class="mk-q" x="176" y="128">？</text>
+          <g class="mk-bulb">
+            <text class="mk-b" x="176" y="128">！</text>
+          </g>
+        </g>
+        <g class="fog">
+          <ellipse class="mist" cx="124" cy="192" rx="66" ry="34"/>
+          <ellipse class="mist" cx="232" cy="198" rx="58" ry="30"/>
+          <ellipse class="mist" cx="176" cy="230" rx="78" ry="30"/>
+        </g>
+        <text class="wq" x="176" y="196">面接って、どうすれば</text>
+        <text class="wq" x="176" y="228">うまくいくんだろう</text>
+        <line class="strike" x1="73" y1="190" x2="279" y2="190"/>
+        <line class="strike" x2="270" y1="222" x1="82" y2="222"/>
+        <g class="rep" style="--rd:0.9s">
+          <rect class="rep-bg" x="330" y="52" width="390" height="68" rx="18"/>
+          <g transform="translate(370,86)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 C8 -11 -8 -11 -13 -4 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,86)"/>
+          <text class="ct" x="416" y="91">準備より先に、場数を10回踏んだ</text>
+        </g>
+        <g class="rep" style="--rd:1.4500000000000002s">
+          <rect class="rep-bg" x="330" y="148" width="390" height="68" rx="18"/>
+          <g transform="translate(370,182)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 L15 13 L9 13 C10 3 8 -6 0 -9 C-8 -6 -10 3 -9 13 L-15 13 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,182)"/>
+          <text class="ct" x="416" y="187">話す内容より、話す順番を組み直した</text>
+        </g>
+        <g class="rep" style="--rd:2.0s">
+          <rect class="rep-bg" x="330" y="244" width="390" height="68" rx="18"/>
+          <g transform="translate(370,278)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 Z"/><path class="av-h" d="M0 -4 L21 -7 A3 3 0 0 0 20 -12 L0 -9 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,278)"/>
+          <text class="ct" x="416" y="283">聞かれたい話を、自分から差し出した</text>
+        </g>
       </g>
-
-      <!-- パーン -->
-      <circle class="arc" cx="400" cy="220" r="54"/>
-      <g class="bolts">
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(400,154)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(447,173) rotate(45)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(466,220) rotate(90)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(447,267) rotate(135)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(400,286) rotate(180)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(353,267) rotate(225)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(334,220) rotate(270)"/>
-        <path d="M1 -9 L-4 1 L-.5 1 L-2 9 L4.5 -1 L1 -1 Z" transform="translate(353,173) rotate(315)"/>
-      </g>
-
-      <!-- 飛んでくるTips -->
-      <g class="tip" style="--dx:290px;--dy:110px;animation-delay:0s">
-        <rect x="95" y="100" width="30" height="20" rx="6"/>
-        <line x1="101" y1="107" x2="119" y2="107"/><line x1="101" y1="113" x2="113" y2="113"/>
-      </g>
-      <g class="tip" style="--dx:-290px;--dy:110px;animation-delay:.3s">
-        <rect x="675" y="100" width="30" height="20" rx="6"/>
-        <line x1="681" y1="107" x2="699" y2="107"/><line x1="681" y1="113" x2="693" y2="113"/>
-      </g>
-      <g class="tip" style="--dx:0px;--dy:-180px;animation-delay:.6s">
-        <rect x="385" y="390" width="30" height="20" rx="6"/>
-        <line x1="391" y1="397" x2="409" y2="397"/><line x1="391" y1="403" x2="403" y2="403"/>
-      </g>
-      <g class="tip" style="--dx:0px;--dy:202px;animation-delay:.9s">
-        <rect x="385" y="8" width="30" height="20" rx="6"/>
-        <line x1="391" y1="15" x2="409" y2="15"/><line x1="391" y1="21" x2="403" y2="21"/>
-      </g>
-      <g class="tip" style="--dx:-290px;--dy:-90px;animation-delay:1.2s">
-        <rect x="675" y="300" width="30" height="20" rx="6"/>
-        <line x1="681" y1="307" x2="699" y2="307"/><line x1="681" y1="313" x2="693" y2="313"/>
-      </g>
-      <g class="tip" style="--dx:290px;--dy:-90px;animation-delay:1.5s">
-        <rect x="95" y="300" width="30" height="20" rx="6"/>
-        <line x1="101" y1="307" x2="119" y2="307"/><line x1="101" y1="313" x2="113" y2="313"/>
+      <g class="turn" style="--d:14s">
+        <g class="ql">
+          <path class="thr" d="M290 214 C316 214 310 86 330 86"/>
+          <path class="thr" d="M290 214 C316 214 310 182 330 182"/>
+          <path class="thr" d="M290 214 C316 214 310 278 330 278"/>
+        </g>
+        <g class="mind">
+          <circle class="halo" cx="176" cy="104" r="62"/>
+          <text class="mk-q" x="176" y="128">？</text>
+          <g class="mk-bulb">
+            <text class="mk-b" x="176" y="128">！</text>
+          </g>
+        </g>
+        <g class="fog">
+          <ellipse class="mist" cx="124" cy="192" rx="66" ry="34"/>
+          <ellipse class="mist" cx="232" cy="198" rx="58" ry="30"/>
+          <ellipse class="mist" cx="176" cy="230" rx="78" ry="30"/>
+        </g>
+        <text class="wq" x="176" y="196">最初の一歩を踏み出す</text>
+        <text class="wq" x="176" y="228">コツって、何かないかな</text>
+        <line class="strike" x1="73" y1="190" x2="279" y2="190"/>
+        <line class="strike" x2="288" y1="222" x1="64" y2="222"/>
+        <g class="rep" style="--rd:0.9s">
+          <rect class="rep-bg" x="330" y="52" width="390" height="68" rx="18"/>
+          <g transform="translate(370,86)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 C8 -11 -8 -11 -13 -4 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,86)"/>
+          <text class="ct" x="416" y="91">期限を切って、先に人へ宣言した</text>
+        </g>
+        <g class="rep" style="--rd:1.4500000000000002s">
+          <rect class="rep-bg" x="330" y="148" width="390" height="68" rx="18"/>
+          <g transform="translate(370,182)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 L15 13 L9 13 C10 3 8 -6 0 -9 C-8 -6 -10 3 -9 13 L-15 13 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,182)"/>
+          <text class="ct" x="416" y="187">一番小さく壊せる形まで削ってみた</text>
+        </g>
+        <g class="rep" style="--rd:2.0s">
+          <rect class="rep-bg" x="330" y="244" width="390" height="68" rx="18"/>
+          <g transform="translate(370,278)">
+            <circle class="av" cx="0" cy="0" r="13"/>
+            <path class="av-h" d="M-13 -4 A13 13 0 0 1 13 -4 Z"/><path class="av-h" d="M0 -4 L21 -7 A3 3 0 0 0 20 -12 L0 -9 Z"/>
+          </g>
+          <path class="blt" d="M1 -8 L-3.5 1 L-.5 1 L-2 8 L4 -1 L1 -1 Z" transform="translate(400,278)"/>
+          <text class="ct" x="416" y="283">考える時間に、上限をつけて動いた</text>
+        </g>
       </g>
     </svg>
   </div>
@@ -606,7 +680,10 @@ svg,video{display:block;max-width:100%;}
 <section class="cta" id="waitlist">
   <div class="wrap">
     <h2>あなたの？を、<br>置いていってください。</h2>
-    <a class="btn" href="#">ウェイティングリストに登録</a>
+    <form class="signup" action="#" method="post" novalidate>
+      <input class="signup__in" type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス">
+      <button class="btn" type="submit">ウェイティングリストに登録</button>
+    </form>
   </div>
 </section>
 
