@@ -530,6 +530,7 @@ button[type="submit"]:focus-visible { outline: 2px solid var(--gold-deep); outli
     try {
       await addDoc(collection(db, 'waitlist'), {
         email,
+        purpose: 'その他',
         lang: navigator.language?.slice(0, 9) ?? 'ja',
         referrer: document.referrer ? document.referrer.slice(0, 499) : 'direct',
         userAgent: navigator.userAgent.slice(0, 399),
